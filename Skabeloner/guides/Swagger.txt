@@ -1,0 +1,26 @@
+﻿
+
+nugget : Swashbuckle.AspNetCore
+
+using Microsoft.OpenApi.Models;
+
+STARTUP.CS
+public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Items API", Version = "v1.0"});
+            });
+        }
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Items API v1.0"));
+            app.UseSwaggerUI(c => c.RoutePrefix = "api/help");
+        }
