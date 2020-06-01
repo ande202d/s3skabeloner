@@ -1,0 +1,38 @@
+﻿----------------------------------------------------------------------------------------
+to do In-memory
+	Microsoft.EntityFrameworkCore.SqlServer
+    Microsoft.EntityFrameworkCore.InMemory
+----------------------------------------------------------------------------------------
+Make a datacontext file
+	using Microsoft.EntityFrameworkCore;
+
+    namespace TodoApi.Models
+    {
+        public class TodoContext : DbContext
+        {
+            public TodoContext(DbContextOptions<TodoContext> options)
+                : base(options)
+            {
+            }
+
+            public DbSet<TodoItem> TodoItems { get; set; }
+        }
+    }
+----------------------------------------------------------------------------------------
+Add stuff to Startup.cs
+    using Microsoft.EntityFrameworkCore;
+
+    public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<StudentContext>(opt =>
+                opt.UseInMemoryDatabase("Students"));
+            services.AddControllers();
+        }
+----------------------------------------------------------------------------------------
+REBUILD - REBUILD - REBUILD - REBUILD - REBUILD - REBUILD - REBUILD
+----------------------------------------------------------------------------------------
+To make the controller
+    rightclick and select "new scarfolded item"
+        select: api controller with entety framework
+            fill out the form
+EVERYTHING WORKING NOW
